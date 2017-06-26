@@ -4,10 +4,13 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+
 
 public class MainActivity extends AppCompatActivity {
     AlarmManager am;
@@ -25,13 +28,29 @@ public class MainActivity extends AppCompatActivity {
 
     private void restartNotify() {
 
-        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(MainActivity.this, MyReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,
-                intent, 0);
+        final Handler updateHandler = new Handler();
+
+        Runnable runnable = new Runnable(){
+
+            public void run() {
+
+                Intent intent = new Intent(MainActivity.this, MyReceiver.class);
+                sendBroadcast(intent);
+
+                // updateHandler.postDelayed(this, time * 1000); // determines the execution interval
+            }
+
+        };
+
+        updateHandler.postDelayed(runnable, time * 1000);
+
+//        am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//        Intent intent = new Intent(MainActivity.this, MyReceiver.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0,
+//                intent, 0);
 
 // Устанавливаем разовое напоминание
-        am.set(AlarmManager.RTC,System.currentTimeMillis() + time * 1000, pendingIntent);
+  //      am.set(AlarmManager.RTC,System.currentTimeMillis() + time * 1000, pendingIntent);
     }
 
     public void onClick (View view){

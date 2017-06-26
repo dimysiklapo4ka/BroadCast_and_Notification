@@ -18,6 +18,7 @@ import java.sql.Time;
 public class MyReceiver extends BroadcastReceiver {
 
     private NotificationManager nm;
+    private String massege = " Z nation, Z narion,Z nation,Z nation,Z nation,Z nation,Z nation,";
 
     private int mId = 101;
 
@@ -31,9 +32,11 @@ public class MyReceiver extends BroadcastReceiver {
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.mipmap.ic_launcher_round)
-                        .setContentTitle("ХЗ")
-                        .setContentText(contentText)
-                .setWhen(System.currentTimeMillis());
+                        .setContentTitle(context.getString(R.string.app_name))
+                        .setContentText(massege)
+                        .setAutoCancel(true)
+                        .setTicker(massege)
+                        .setWhen(System.currentTimeMillis());
 
         Intent resultIntent = new Intent(context, MainActivity.class);
 
