@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BroadCastReceiver</string>
+    <string name="button_connect">Connect</string>
+    <string name="button_disconnect">Disconnect</string>
+    <string name="invalid_data_button">OK</string>
+    <string name="title_notification">Зарядное устройство</string>
+    <string name="disconnect_title_notification">Подключено</string>
+    <string name="bt_start">start</string>
+    <string name="et_hint">Введите кол-во секунд</string>
+</resources>
